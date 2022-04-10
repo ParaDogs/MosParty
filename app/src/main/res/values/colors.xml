@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <!--  MosIgra colors  -->
+    <color name="mosigra_white">#E5E5E5</color>
+    <color name="mosigra_red">#B91028</color>
+    <color name="mosigra_gray">#E0E0E0</color>
+</resources>

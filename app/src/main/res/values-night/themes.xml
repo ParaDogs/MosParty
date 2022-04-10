@@ -1,0 +1,20 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.MosParty" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/mosigra_red</item>
+        <item name="colorPrimaryVariant">@color/mosigra_red</item>
+        <item name="colorOnPrimary">@color/mosigra_red</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/mosigra_red</item>
+        <item name="colorSecondaryVariant">@color/mosigra_red</item>
+        <item name="colorOnSecondary">@color/mosigra_red</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">@color/mosigra_red</item>
+        <!-- Theme color. -->
+        <item name="android:colorBackground">@color/mosigra_white</item>
+        <item name="fontFamily">@font/roboto_medium</item>
+        <item name="colorSurface">@color/mosigra_red</item>
+        <item name="colorOnSurfaceVariant">@color/white</item>
+    </style>
+</resources>
