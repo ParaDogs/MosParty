@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">МосПати</string>
+    <!--  Заголовки главной страницы -->
     <string name="shops_title">Магазины Мосигры во Владивостоке</string>
+    <string name="events_title">Популярные мероприятия</string>
+    <string name="discounts_title">Популярные акции</string>
+    <!--  Названия элементов навигации  -->
     <string name="title_nav_home">Главная</string>
     <string name="title_nav_events">События</string>
     <string name="title_nav_discounts">Скидки</string>
