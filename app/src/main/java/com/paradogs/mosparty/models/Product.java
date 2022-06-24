@@ -1,16 +1,17 @@
 package com.paradogs.mosparty.models;
 
 public class Product {
-    private final String title;
-    private final Integer oldPrice;
-    private final Integer price;
-    private final String location;
-    private final String description;
-    private final String link;
-    private final String pathPhoto;
+    private String title;
+    private String oldPrice;
+    private String price;
+    private String location;
+    private String description;
+    private String link;
+    private String pathPhoto;
 
-    public Product(String title, Integer oldPrice, Integer price, String location,
-                   String description, String link, String pathPhoto) {
+    public Product() {}
+
+    public Product(String title, String oldPrice, String price, String location, String description, String link, String pathPhoto) {
         this.title = title;
         this.oldPrice = oldPrice;
         this.price = price;
@@ -24,11 +25,11 @@ public class Product {
         return title;
     }
 
-    public Integer getOldPrice() {
+    public String getOldPrice() {
         return oldPrice;
     }
 
-    public Integer getPrice() {
+    public String getPrice() {
         return price;
     }
 

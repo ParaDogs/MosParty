@@ -2,13 +2,23 @@ package com.paradogs.mosparty.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.paradogs.mosparty.R;
+import com.paradogs.mosparty.models.Product;
+import com.paradogs.mosparty.view_holders.ProductViewHolder;
+import com.squareup.picasso.Picasso;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +35,9 @@ public class DiscountsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    DatabaseReference productRef;
+    private RecyclerView recyclerView;
 
     public DiscountsFragment() {
         // Required empty public constructor
@@ -55,12 +68,48 @@ public class DiscountsFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        productRef = FirebaseDatabase.getInstance().getReference().child("products");
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        FirebaseRecyclerOptions<Product> options = new FirebaseRecyclerOptions.Builder<Product>()
+                .setQuery(productRef, Product.class).build();
+
+        FirebaseRecyclerAdapter<Product, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Product, ProductViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull Product model) {
+                holder.txtProductTitle.setText(model.getTitle());
+                holder.txtProductOldPrice.setText(model.getOldPrice());
+                holder.txtProductPrice.setText(model.getPrice());
+                Picasso.get().load(model.getPathPhoto()).into(holder.image);
+            }
+
+            @NonNull
+            @Override
+            public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_discounts, parent, false);
+                ProductViewHolder holder = new ProductViewHolder(view);
+                return holder;
+            }
+        };
+
+        recyclerView.setAdapter(adapter);
+        adapter.startListening();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_discounts, container, false);
+        recyclerView = (RecyclerView) view.findViewById(R.id.products_list);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(layoutManager);
         return inflater.inflate(R.layout.fragment_discounts, container, false);
     }
 }
